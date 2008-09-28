@@ -95,23 +95,32 @@ patterns = {
 	'currentFamiliar' : r'href="familiar.php">(?:<b>)?<font size=[0-9]+>(.*?)</a>(?:</b>)?, the  ([0-9]+)-pound (.*?)<table',
 	'characterEffect' : r'eff\("[a-fA-F0-9]+"\);\'.*?></td><td valign=center><font size=[0-9]+>(.*?) ?\(([0-9]+)\)</font><br></td>',
 	
-	# Stat related Patterns.
-	# RE's for HP/MP may be overly complicated if in-game case use is consistently one of the options.
-	# Also, these patterns should work in normal combat, but will fail miserably in the Haiku Dungeon.
-	'statGain' : r'You gain.*?([0-9,]+).*?((?:Beefiness)|(?:Fortitude)|(?:Muscleboundness)|(?:Strengthliness)|(?:Strongness)|(?:Enchantedness)|(?:Magicalness)|(?:Mysteriousness)|(?:Wizardliness)|(?:Cheek)|(?:Chutzpah)|(?:Roguishness)|(?:Sarcasm)|(?:Smarm))',
-	'statLoss' : r'You lose.*?([0-9,]+).*?((?:Beefiness)|(?:Fortitude)|(?:Muscleboundness)|(?:Strengthliness)|(?:Strongness)|(?:Enchantedness)|(?:Magicalness)|(?:Mysteriousness)|(?:Wizardliness)|(?:Cheek)|(?:Chutzpah)|(?:Roguishness)|(?:Sarcasm)|(?:Smarm))',
+	# Stat, Substat, Leveling, HP, and MP patterns.
+	'muscleGainLoss' : r'You (gain|lose) ([0-9,]+) (?:Beefiness|Fortitude|Muscleboundness|Strengthliness|Strongness)',
+	'mysticalityGainLoss' : r'You (gain|lose) ([0-9,]+) (?:Enchantedness|Magicalness|Mysteriousness|Wizardliness)',
+	'moxieGainLoss' : r'You (gain|lose) ([0-9,]+) (?:Cheek|Chutzpah|Roguishness|Sarcasm|Smarm)',
 	'hpGain' : r'You gain.*?([0-9,]+).*?(?:H|hit P|points?)',
 	'hpLoss' : r'You lose.*?([0-9,]+).*?(?:H|hit P|points?)',
 	'mpGain' : r'You gain.*?([0-9,]+).*?(?:(?:M|muscularity)|(?:M|mana)|(?:M|mojo) P|points?)',
 	'mpLoss' : r'You lose.*?([0-9,]+).*?(?:(?:M|muscularity)|(?:M|mana)|(?:M|mojo) P|points?)',
 	
-	# Meatpasting Patterns.
+	# Meatpasting patterns.
 	'noMeatpaste' : (r"<b>Results:</b>.*You don't have any meat paste.*<b>Combine Items:</b>", re.DOTALL),
 	'itemsDontMeatpaste' : r"<td>Those two items don't combine to make anything interesting\.</td>",
 	'dontHaveItemsMeatpaste' : r"<td>You don't have enough of one the necessary items to make that combination\.</td>",
 	'noMeatForMeatpasting' : r"<td>You don't have enough Meat to make that many\.</td>",
 	
-	# Store Patterns
+	# Store patterns.
 	'meatSpent' : r'You spent ([0-9,]+) Meat',
 	'noMeatForStore' : r"(?:You can't afford that many of that item)|(?:You can't afford that item)",
+	
+	# Adventure patterns.
+	"twiddlingThumbs" : r"You twiddle your thumbs\.",
+	"userShouldNotBeHere" : r">You shouldn't be here\.<",
+	"monsterName" : r"<span id='monname'>(.*?)<\/span>",
+	"choiceIdentifier" : r'<input type="?hidden"? name="?whichchoice"? value="?([0-9]+)"?>',
+	"choiceName" : r"<b>([^<>]+?)<\/b><\/td><\/tr>",
+	"noncombatName" : r"<center><table><tr><td><center><b>([^<>]+)<\/b><br><img",
+	"fightWon" : r"<center>You win the fight!<!--WINWINWIN--><p>",
+	"fightLost" : r"<p>You lose\. +You slink away, dejected and defeated\.<p>",
 }
